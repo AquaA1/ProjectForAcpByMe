@@ -22,12 +22,36 @@ int obj_count = 0;
 int next_id = 1;
 char canvas[HEIGHT][WIDTH];
 
-// --- 1. LOW-LEVEL DRAWING FUNCTIONS ---
 
-// Safely place a pixel on the canvas
 void put_pixel(int x, int y) {
     if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT) {
         canvas[y][x] = '*';
     }
 }
 
+void draw_line(int x0, int y0, int x1, int y1) {
+    int dx = abs(x1 - x0), sx = x0 < x1 ? 1 : -1;
+    int dy = -abs(y1 - y0), sy = y0 < y1 ? 1 : -1;
+    int err = dx + dy, e2;
+    
+    while (1) {
+        put_pixel(x0, y0);
+        if (x0 == x1 && y0 == y1) break;
+        e2 = 2 * err;
+        if (e2 >= dy) { err += dy; x0 += sx; }
+        if (e2 <= dx) { err += dx; y0 += sy; }
+    }
+}
+
+void draw_rectangle(int x, int y, int w, int h) {
+    draw_line(x, y, x + w, y);             
+    draw_line(x, y + h, x + w, y + h);     
+    draw_line(x, y, x, y + h);             
+    draw_line(x + w, y, x + w, y + h);     
+}
+
+void draw_triangle(int x1, int y1, int x2, int y2, int x3, int y3) {
+    draw_line(x1, y1, x2, y2);
+    draw_line(x2, y2, x3, y3);
+    draw_line(x3, y3, x1, y1);
+}
