@@ -199,3 +199,34 @@ void list_objects() {
     }
     if (count == 0) printf("No objects on canvas.\n");
 }
+
+int main() {
+    // Initialize empty object array
+    for (int i = 0; i < MAX_OBJS; i++) {
+        objects[i].type = NONE;
+    }
+
+    int choice;
+    while (1) {
+        printf("\n=== 2D Graphics Editor ===\n");
+        printf("1. Add Object\n");
+        printf("2. Delete Object\n");
+        printf("3. Modify Object\n");
+        printf("4. List Objects\n");
+        printf("5. Display Picture\n");
+        printf("6. Exit\n");
+        printf("Choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1: add_object(); break;
+            case 2: delete_object(); break;
+            case 3: modify_object(); break;
+            case 4: list_objects(); break;
+            case 5: display_picture(); break;
+            case 6: return 0;
+            default: printf("Invalid choice.\n");
+        }
+    }
+    return 0;
+}
