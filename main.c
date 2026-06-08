@@ -145,3 +145,18 @@ void add_object() {
     }
     printf("Object added with ID: %d\n", objects[slot].id);
 }
+
+void delete_object() {
+    int id;
+    printf("Enter ID of object to delete: ");
+    scanf("%d", &id);
+
+    for (int i = 0; i < MAX_OBJS; i++) {
+        if (objects[i].type != NONE && objects[i].id == id) {
+            objects[i].type = NONE; // Simply mark it as NONE to delete it
+            printf("Object %d deleted.\n", id);
+            return;
+        }
+    }
+    printf("Object not found.\n");
+}
