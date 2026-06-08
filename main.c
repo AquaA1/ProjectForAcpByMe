@@ -73,14 +73,14 @@ void draw_circle(int cx, int cy, int r) {
 }
 
 void display_picture() {
-    // 1. Clear the canvas
+    // clear the canvs
     for (int y = 0; y < HEIGHT; y++) {
         for (int x = 0; x < WIDTH; x++) {
             canvas[y][x] = '_';
         }
     }
 
-    // 2. Render objects
+    //  render objcts
     for (int i = 0; i < MAX_OBJS; i++) {
         if (objects[i].type == LINE) {
             draw_line(objects[i].x1, objects[i].y1, objects[i].x2, objects[i].y2);
@@ -93,7 +93,7 @@ void display_picture() {
         }
     }
 
-    // 3. Print the canvas
+    // print the canvas
     printf("\n=== CANVAS ===\n");
     for (int y = 0; y < HEIGHT; y++) {
         for (int x = 0; x < WIDTH; x++) {
@@ -102,4 +102,46 @@ void display_picture() {
         printf("\n");
     }
     printf("==============\n");
+}
+
+int find_free_slot() {
+    for (int i = 0; i < MAX_OBJS; i++) {
+        if (objects[i].type == NONE) return i;
+    }
+    return -1;
+}
+
+void add_object() {
+    int slot = find_free_slot();
+    if (slot == -1) {
+        printf("Canvas is full!\n");
+        return;
+    }
+
+    int choice;
+    printf("\n1. Line  2. Rectangle  3. Circle  4. Triangle\nChoose shape to add: ");
+    scanf("%d", &choice);
+
+    objects[slot].id = next_id++;
+    
+    if (choice == 1) {
+        objects[slot].type = LINE;
+        printf("Enter x1 y1 x2 y2: ");
+        scanf("%d %d %d %d", &objects[slot].x1, &objects[slot].y1, &objects[slot].x2, &objects[slot].y2);
+    } else if (choice == 2) {
+        objects[slot].type = RECTANGLE;
+        printf("Enter x, y, width, height: ");
+        scanf("%d %d %d %d", &objects[slot].x1, &objects[slot].y1, &objects[slot].x2, &objects[slot].y2);
+    } else if (choice == 3) {
+        objects[slot].type = CIRCLE;
+        printf("Enter center x, center y, radius: ");
+        scanf("%d %d %d", &objects[slot].x1, &objects[slot].y1, &objects[slot].r);
+    } else if (choice == 4) {
+        objects[slot].type = TRIANGLE;
+        printf("Enter x1 y1 x2 y2 x3 y3: ");
+        scanf("%d %d %d %d %d %d", &objects[slot].x1, &objects[slot].y1, &objects[slot].x2, &objects[slot].y2, &objects[slot].x3, &objects[slot].y3);
+    } else {
+        printf("Invalid choice.\n");
+    }
+    printf("Object added with ID: %d\n", objects[slot].id);
 }
