@@ -55,3 +55,47 @@ void draw_triangle(int x1, int y1, int x2, int y2, int x3, int y3) {
     draw_line(x2, y2, x3, y3);
     draw_line(x3, y3, x1, y1);
 }
+
+void draw_circle(int cx, int cy, int r) {
+    // Loop through a bounding box and calculate distance
+    for (int y = cy - r; y <= cy + r; y++) {
+        for (int x = cx - r; x <= cx + r; x++) {
+            int dx = x - cx;
+            int dy = y - cy;
+            int dist_sq = dx * dx + dy * dy;
+            int r_sq = r * r;
+            // Add a small threshold to make the text circle look connected
+            if (dist_sq >= r_sq - r && dist_sq <= r_sq + r) {
+                put_pixel(x, y);
+            }
+        }
+    }
+}
+
+void display_picture() {
+    // 1. Clear the canvas
+    for (int y = 0; y < HEIGHT; y++) {
+        for (int x = 0; x < WIDTH; x++) {
+            canvas[y][x] = '_';
+        }
+    }
+
+    // 2. Render objects
+    for (int i = 0; i < MAX_OBJS; i++) {
+        if (objects[i].type == LINE) {
+            draw_line(objects[i].x1, objects[i].y1, objects[i].x2, objects[i].y2);
+        } else if (objects[i].type == RECTANGLE) {
+            draw_rectangle(objects[i].x1, objects[i].y1, objects[i].x2, objects[i].y2);
+        } 
+    }
+
+    // 3. Print the canvas
+    printf("\n=== CANVAS ===\n");
+    for (int x = 0; y < HEIGHT; y++) {
+        for (int x = 0; x < WIDTH; x++) {
+            printf("%c", canvas[y][x]);
+        }
+        printf("\n");
+    }
+    printf("==============\n");
+}
