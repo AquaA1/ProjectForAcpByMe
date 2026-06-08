@@ -160,3 +160,42 @@ void delete_object() {
     }
     printf("Object not found.\n");
 }
+
+void modify_object() {
+    int id;
+    printf("Enter ID of object to modify: ");
+    scanf("%d", &id);
+
+    for (int i = 0; i < MAX_OBJS; i++) {
+        if (objects[i].type != NONE && objects[i].id == id) {
+            printf("Modifying object %d.\n", id);
+            if (objects[i].type == LINE) {
+                printf("Enter new x1 y1 x2 y2: ");
+                scanf("%d %d %d %d", &objects[i].x1, &objects[i].y1, &objects[i].x2, &objects[i].y2);
+            } else if (objects[i].type == RECTANGLE) {
+                printf("Enter new x, y, width, height: ");
+                scanf("%d %d %d %d", &objects[i].x1, &objects[i].y1, &objects[i].x2, &objects[i].y2);
+            } else if (objects[i].type == CIRCLE) {
+                printf("Enter new center x, center y, radius: ");
+                scanf("%d %d %d", &objects[i].x1, &objects[i].y1, &objects[i].r);
+            } else if (objects[i].type == TRIANGLE) {
+                printf("Enter new x1 y1 x2 y2 x3 y3: ");
+                scanf("%d %d %d %d %d %d", &objects[i].x1, &objects[i].y1, &objects[i].x2, &objects[i].y2, &objects[i].x3, &objects[i].y3);
+            }
+            return;
+        }
+    }
+    printf("Object not found.\n");
+}
+
+void list_objects() {
+    printf("\n--- Active Objects ---\n");
+    int count = 0;
+    for (int i = 0; i < MAX_OBJS; i++) {
+        if (objects[i].type != NONE) {
+            printf("ID: %d | Type: %d\n", objects[i].id, objects[i].type);
+            count++;
+        }
+    }
+    if (count == 0) printf("No objects on canvas.\n");
+}
