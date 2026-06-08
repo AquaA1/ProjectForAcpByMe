@@ -86,12 +86,16 @@ void display_picture() {
             draw_line(objects[i].x1, objects[i].y1, objects[i].x2, objects[i].y2);
         } else if (objects[i].type == RECTANGLE) {
             draw_rectangle(objects[i].x1, objects[i].y1, objects[i].x2, objects[i].y2);
-        } 
+        } else if (objects[i].type == TRIANGLE) {
+            draw_triangle(objects[i].x1, objects[i].y1, objects[i].x2, objects[i].y2, objects[i].x3, objects[i].y3);
+        } else if (objects[i].type == CIRCLE) {
+            draw_circle(objects[i].x1, objects[i].y1, objects[i].r);
+        }
     }
 
     // 3. Print the canvas
     printf("\n=== CANVAS ===\n");
-    for (int x = 0; y < HEIGHT; y++) {
+    for (int y = 0; y < HEIGHT; y++) {
         for (int x = 0; x < WIDTH; x++) {
             printf("%c", canvas[y][x]);
         }
