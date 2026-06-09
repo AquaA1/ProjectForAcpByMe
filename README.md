@@ -26,6 +26,17 @@
 
 ```
 
+
+## Screenshots
+
+### Main Menu
+
+![Main Menu](photos/Console1.png)
+
+### Sample Drawing (House)
+
+![House Drawing](photos/House1.png)
+
 ## Description
 
 A menu-driven 2D Graphics Editor in C using a 2D character array as the drawing canvas.
