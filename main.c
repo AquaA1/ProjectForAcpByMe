@@ -93,15 +93,30 @@ void display_picture() {
         }
     }
 
-    // print the canvas
-    printf("\n=== CANVAS ===\n");
+    // // print the canvas //may not use it
+    // printf("\n=== CANVAS ===\n");
+    // for (int y = 0; y < HEIGHT; y++) {
+    //     for (int x = 0; x < WIDTH; x++) {
+    //         printf("%c", canvas[y][x]);
+    //     }
+    //     printf("\n");
+    // }
+    // printf("==============\n");
+      printf("\n=== CANVAS ===\n");
+
+
+    printf("\n");
+    
+
     for (int y = 0; y < HEIGHT; y++) {
+        printf("%2d ", y); // y-axis label
         for (int x = 0; x < WIDTH; x++) {
             printf("%c", canvas[y][x]);
         }
         printf("\n");
-    }
-    printf("==============\n");
+}
+
+printf("   1====5====10====15====20====25====30====35====40====45====50\n");
 }
 
 int find_free_slot() {
