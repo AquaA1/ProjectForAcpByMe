@@ -45,24 +45,24 @@ A menu-driven 2D Graphics Editor in C using a 2D character array as the drawing 
 
 * Add Line
 
-'''text
+```text
 x1 y1 x2 y2
-'''
+```
 * Add Rectangle
 
-'''text
+```text
 x y width height
-'''
+```
 * Add Circle
 
-'''text
+```text
 center_x center_y radius
-'''
+```
 * Add Triangle
 
-'''text
+```text
 x1 y1 x2 y2 x3 y3
-'''
+```
 * Modify Existing Objects
 * Delete Objects
 * List Objects
