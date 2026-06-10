@@ -44,18 +44,22 @@ A menu-driven 2D Graphics Editor in C using a 2D character array as the drawing 
 ## Features
 
 * Add Line
+
 '''text
 x1 y1 x2 y2
 '''
 * Add Rectangle
+
 '''text
 x y width height
 '''
 * Add Circle
+
 '''text
 center_x center_y radius
 '''
 * Add Triangle
+
 '''text
 x1 y1 x2 y2 x3 y3
 '''
